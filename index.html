@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laventy Studio | Design Sensorial & Assinaturas</title>
+    <style>
+        :root {
+            --primary-color: #b8a5d1;
+            --text-color: #404040;
+            --light-bg: #fdfbff;
+            --border-color: #e8e8e8;
+            --accent-orange: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 1rem;
+            color: #3d3d3d;
+        }
+
+        h1 { font-size: clamp(2rem, 5vw, 3rem); }
+        h2 { font-size: clamp(1.5rem, 4vw, 2rem); }
+        h3 { font-size: 1.5rem; }
+
+        p { margin-bottom: 1rem; }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        nav {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            flex: 1;
+            justify-content: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.75rem;
+            color: var(--text-color);
+            flex-shrink: 0;
+        }
+
+        .menu-toggle svg {
+            display: block;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(184, 165, 209, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: #ffffff;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            padding: 4rem 0;
+        }
+
+        .hero-content {
+            padding-right: 2rem;
+        }
+
+        .hero-content h1 {
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 500px;
+            background-image: url('https://laventystud-nqtqqhea.manus.space/images/hero-candles.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 1rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .section-somos-luz {
+            background: var(--light-bg);
+            padding: 6rem 0;
+            text-align: center;
+            border-top: 1px solid #f0f0f0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .section-somos-luz h2 {
+            margin-bottom: 2rem;
+        }
+
+        .section-somos-luz p {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-size: 1.25rem;
+            color: var(--text-color);
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        .ceo-image-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+
+        .ceo-image-wrapper {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            border: 3px solid rgba(184, 165, 209, 0.2);
+        }
+
+        .ceo-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .product-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 280px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            font-size: 0.7rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-name {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1.25rem;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .plan-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .plan-card.featured {
+            border: 2px solid var(--primary-color);
+            background: rgba(184, 165, 209, 0.03);
+            transform: scale(1.03);
+            z-index: 1;
+        }
+
+        .plan-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: #ffffff;
+            padding: 0.4rem 1.2rem;
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .plan-price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin: 1.5rem 0;
+        }
+
+        .plan-features {
+            text-align: left;
+            margin: 2rem 0;
+            list-style: none;
+            flex-grow: 1;
+        }
+
+        .plan-features li {
+            padding: 0.6rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .plan-features li svg {
+            color: #a8d5ba;
+            flex-shrink: 0;
+        }
+
+        .section-como-funciona {
+            padding: 6rem 0;
+            background: #ffffff;
+        }
+
+        .section-como-funciona h2 {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .step-card {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .step-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .btn-assine-centralizado {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+
+        .faq-section {
+            background: #f9f9f9;
+            padding: 5rem 0;
+            border-radius: 1.5rem;
+            margin: 4rem 0;
+        }
+
+        .faq-item {
+            background: #ffffff;
+            margin-bottom: 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: var(--light-bg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease-out;
+            color: #666;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 300px;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-icon {
+            transition: transform 0.3s;
+            color: var(--primary-color);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 4rem;
+            margin: 4rem 0;
+        }
+
+        .contact-form {
+            background: #fcfcfc;
+            padding: 3rem;
+            border-radius: 1rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.9rem;
+            border: 1px solid #ddd;
+            border-radius: 0.6rem;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(184, 165, 209, 0.1);
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-info-icon {
+            background: var(--light-bg);
+            color: var(--primary-color);
+            width: 48px;
+            height: 48px;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: #ffffff;
+            padding: 5rem 0 2rem;
+            margin-top: 6rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-section h4 {
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-section p {
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section ul li a {
+            text-decoration: none;
+            color: #aaa;
+            transition: color 0.3s;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .mt-4 {
+            margin-top: 4rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        @media (max-width: 1024px) {
+            .hero { gap: 2rem; }
+            .contact-container { gap: 2rem; }
+            
+            .logo img {
+                height: 150px;
+            }
+
+            .ceo-image-wrapper {
+                width: 250px;
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 0.75rem 0;
+            }
+
+            .header-content {
+                gap: 1rem;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                width: 100%;
+                background: #ffffff;
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1rem;
+                border-bottom: 1px solid var(--border-color);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                flex: none;
+                justify-content: flex-start;
+            }
+
+            nav.show {
+                display: flex;
+            }
+
+            nav a {
+                padding: 0.75rem 0;
+                font-size: 1rem;
+            }
+
+            .logo img {
+                height: 140px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 2rem 0;
+            }
+
+            .hero-content {
+                padding-right: 0;
+                order: 2;
+            }
+
+            .hero-image {
+                height: 350px;
+                order: 1;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                text-align: center;
+            }
+
+            .plan-card.featured {
+                transform: none;
+            }
+
+            .ceo-image-wrapper {
+                width: 220px;
+                height: 220px;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo img {
+                height: 130px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+
+            .ceo-image-wrapper {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a onclick="showPage('home')" class="logo">
+                <img src="https://i.postimg.cc/8cC0gqQv/Design-sem-nome-3-removebg-preview.png" alt="Laventy Studio Logo">
+            </a>
+            
+            <nav id="main-nav">
+                <a onclick="showPage('home')" id="nav-home" class="active">Home</a>
+                <a onclick="showPage('somos-luz')" id="nav-somos-luz">Somos Luz</a>
+                <a onclick="showPage('produtos')" id="nav-produtos">Produtos</a>
+                <a onclick="showPage('clube-laventy')" id="nav-clube-laventy">Clube Laventy</a>
+                <a onclick="showPage('contato')" id="nav-contato">Contato</a>
+            </nav>
+
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <div id="home" class="page active">
+        <section class="container hero">
+            <div class="hero-content">
+                <h1>Luz, Calma e Propósito</h1>
+                <p>Laventy, design sensorial entregue todo mês em sua casa.</p>
+                <div class="hero-buttons">
+                    <a onclick="showPage('clube-laventy')" class="btn btn-primary">Assine Já! →</a>
+                    <a onclick="showPage('produtos')" class="btn btn-secondary">Ver Produtos</a>
+                </div>
+            </div>
+            <div class="hero-image"></div>
+        </section>
+
+        <section class="section-somos-luz">
+            <div class="container">
+                <h2>Somos Luz</h2>
+                <p>A Laventy Studio by Design Sensorial foi idealizada com o firme propósito de entregar uma experiencia sensorial por meio da produção de Velas aromáticas handmade, difusores e coleções pet-safe pra você e sua família.</p>
+                <div class="ceo-image-container">
+                    <div class="ceo-image-wrapper">
+                        <img src="https://i.postimg.cc/Fs5TZd1j/Black%20White%20Elegant%20Typography%20Monogram%20Logo.png" alt="Ana Paula Stuart - CEO Laventy Studio">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container mt-4">
+            <h2 class="text-center">Por Que Assinar?</h2>
+            <p class="text-center" style="color: #888; margin-bottom: 3rem;">Benefícios exclusivos para membros do Clube Laventy</p>
+            <div class="products-grid">
+                <div class="product-card text-center" style="padding: 2rem; border: none;">
+                    <div class="benefit-icon" style="margin: 0 auto 1rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M12 8v13"></path><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"></path></svg>
+                    </div>
+                    <h4>Entrega Automática</h4>
+                    <p style="color: #888;">Receba sua caixa curada todo mês na sua porta</p>
+                </div>
+                <div class="product-card text-center" style="padding: 2rem; border: none;">
+                    <div class="benefit-icon" style="margin: 0 auto 1rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    </div>
+                    <h4>Desconto Exclusivo</h4>
+                    <p style="color: #888;">Economize até 22% em assinaturas vs. compra única</p>
+                </div>
+                <div class="product-card text-center" style="padding: 2rem; border: none;">
+                    <div class="benefit-icon" style="margin: 0 auto 1rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg>
+                    </div>
+                    <h4>Seleção Curada</h4>
+                    <p style="color: #888;">Fragrâncias rotativas escolhidas por artesãos</p>
+                </div>
+                <div class="product-card text-center" style="padding: 2rem; border: none;">
+                    <div class="benefit-icon" style="margin: 0 auto 1rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
+                    </div>
+                    <h4>Pausa Quando Quiser</h4>
+                    <p style="color: #888;">Flexibilidade total - pause ou cancele sem multa</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="somos-luz" class="page">
+        <section class="container mt-4">
+            <h1 class="text-center">Somos Luz</h1>
+            <div class="section-somos-luz" style="background: none; border: none; padding: 2rem 0;">
+                <p style="font-size: 1.5rem; line-height: 1.8; color: var(--text-color);">A Laventy Studio by Design Sensorial foi idealizada com o firme propósito de entregar uma experiencia sensorial por meio da produção de Velas aromáticas handmade, difusores e coleções pet-safe pra você e sua família.</p>
+                <div class="ceo-image-container">
+                    <div class="ceo-image-wrapper">
+                        <img src="https://i.postimg.cc/Fs5TZd1j/Black%20White%20Elegant%20Typography%20Monogram%20Logo.png" alt="Ana Paula Stuart - CEO Laventy Studio">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="produtos" class="page">
+        <section class="container mt-4">
+            <h1 class="text-center">Nossos Produtos</h1>
+            <p class="text-center" style="color: #888; margin-bottom: 3rem;">Compre avulso ou combine com sua assinatura</p>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('https://laventystud-nqtqqhea.manus.space/images/hero-candles.jpg');"></div>
+                    <div class="product-info">
+                        <div class="product-category">Vela Aromática</div>
+                        <div class="product-name">Vela Lavanda Relax</div>
+                        <div class="product-price">€22.00</div>
+                        <a href="https://wa.me/5548999776300?text=Olá! Tenho interesse na Vela Lavanda Relax" target="_blank" class="btn btn-primary" style="width: 100%;">Comprar Agora</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('https://laventystud-nqtqqhea.manus.space/images/lifestyle-ambiance.jpg');"></div>
+                    <div class="product-info">
+                        <div class="product-category">Difusor</div>
+                        <div class="product-name">Difusor Jasmim Noturno</div>
+                        <div class="product-price">€28.00</div>
+                        <a href="https://wa.me/5548999776300?text=Olá! Tenho interesse no Difusor Jasmim Noturno" target="_blank" class="btn btn-primary" style="width: 100%;">Comprar Agora</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('https://laventystud-nqtqqhea.manus.space/images/subscription-box.jpg');"></div>
+                    <div class="product-info">
+                        <div class="product-category">Kit</div>
+                        <div class="product-name">Kit Verbena Fresca</div>
+                        <div class="product-price">€35.00</div>
+                        <a href="https://wa.me/5548999776300?text=Olá! Tenho interesse no Kit Verbena Fresca" target="_blank" class="btn btn-primary" style="width: 100%;">Comprar Agora</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('https://laventystud-nqtqqhea.manus.space/images/hero-candles.jpg');"></div>
+                    <div class="product-info">
+                        <div class="product-category">Vela Pet-Safe</div>
+                        <div class="product-name">Vela Citronela Natural</div>
+                        <div class="product-price">€24.00</div>
+                        <a href="https://wa.me/5548999776300?text=Olá! Tenho interesse na Vela Citronela Natural" target="_blank" class="btn btn-primary" style="width: 100%;">Comprar Agora</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('https://laventystud-nqtqqhea.manus.space/images/lifestyle-ambiance.jpg');"></div>
+                    <div class="product-info">
+                        <div class="product-category">Difusor</div>
+                        <div class="product-name">Difusor Eucalipto Zen</div>
+                        <div class="product-price">€26.00</div>
+                        <a href="https://wa.me/5548999776300?text=Olá! Tenho interesse no Difusor Eucalipto Zen" target="_blank" class="btn btn-primary" style="width: 100%;">Comprar Agora</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('https://laventystud-nqtqqhea.manus.space/images/subscription-box.jpg');"></div>
+                    <div class="product-info">
+                        <div class="product-category">Kit Premium</div>
+                        <div class="product-name">Kit Spa Experience</div>
+                        <div class="product-price">€45.00</div>
+                        <a href="https://wa.me/5548999776300?text=Olá! Tenho interesse no Kit Spa Experience" target="_blank" class="btn btn-primary" style="width: 100%;">Comprar Agora</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="clube-laventy" class="page">
+        <section class="container mt-4">
+            <h1 class="text-center">Clube Laventy</h1>
+            <p class="text-center" style="color: #888; margin-bottom: 3rem;">Assinaturas sensoriais curadas para trazer calma e propósito ao seu lar. Economize até 22% com entrega automática.</p>
+            
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <h3>Básico</h3>
+                    <p style="color: #888; font-size: 0.9rem;">1 vela premium por mês</p>
+                    <div class="plan-price">€18<span style="font-size: 1rem; font-weight: 400;">/mês</span></div>
+                    <p style="color: #888; font-size: 0.9rem; text-decoration: line-through;">€22</p>
+                    <p style="color: var(--accent-orange); font-weight: 600; margin-bottom: 1.5rem;">Economize 18%</p>
+                    <ul class="plan-features">
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>1 vela aromática premium</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Fragrâncias rotativas</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Entrega mensal gratuita</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Pausa/cancelamento flexível</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Acesso a vendas exclusivas</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Personalização de fragrâncias</li>
+                    </ul>
+                    <a href="https://wa.me/5548999776300?text=Olá! Quero assinar o plano Básico" target="_blank" class="btn btn-secondary" style="width: 100%;">Assinar Básico</a>
+                </div>
+
+                <div class="plan-card featured">
+                    <div class="plan-badge">Mais Popular</div>
+                    <h3>Essencial</h3>
+                    <p style="color: #888; font-size: 0.9rem;">2 velas + 1 difusor</p>
+                    <div class="plan-price">€35<span style="font-size: 1rem; font-weight: 400;">/mês</span></div>
+                    <p style="color: #888; font-size: 0.9rem; text-decoration: line-through;">€45</p>
+                    <p style="color: var(--accent-orange); font-weight: 600; margin-bottom: 1.5rem;">Economize 22%</p>
+                    <ul class="plan-features">
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>2 velas aromáticas premium</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>1 difusor de ambiente</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Fragrâncias rotativas</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Entrega mensal gratuita</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Pausa/cancelamento flexível</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Acesso a vendas exclusivas</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Personalização de fragrâncias</li>
+                    </ul>
+                    <a href="https://wa.me/5548999776300?text=Olá! Quero assinar o plano Essencial" target="_blank" class="btn btn-primary" style="width: 100%;">Assinar Essencial</a>
+                </div>
+
+                <div class="plan-card">
+                    <h3>Pet-Safe</h3>
+                    <p style="color: #888; font-size: 0.9rem;">Seleção segura para animais</p>
+                    <div class="plan-price">€28<span style="font-size: 1rem; font-weight: 400;">/mês</span></div>
+                    <p style="color: #888; font-size: 0.9rem; text-decoration: line-through;">€35</p>
+                    <p style="color: var(--accent-orange); font-weight: 600; margin-bottom: 1.5rem;">Economize 20%</p>
+                    <ul class="plan-features">
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Velas pet-safe certificadas</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Óleos essenciais seguros</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Sem produtos tóxicos</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Entrega mensal gratuita</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Pausa/cancelamento flexível</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Consulta com especialista pet</li>
+                    </ul>
+                    <a href="https://wa.me/5548999776300?text=Olá! Quero assinar o plano Pet-Safe" target="_blank" class="btn btn-secondary" style="width: 100%;">Assinar Pet-Safe</a>
+                </div>
+            </div>
+
+            <section class="section-como-funciona">
+                <h2>Como Funciona</h2>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3>Escolha seu Plano</h3>
+                        <p>Selecione o plano que melhor se adequa ao seu estilo de vida.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3>Escolha a Frequência</h3>
+                        <p>Mensal, trimestral ou anual. Você controla o ritmo.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3>Receba Automaticamente</h3>
+                        <p>Sua caixa curada chega na sua porta conforme agendado.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h3>Gerencie Quando Quiser</h3>
+                        <p>Pause, cancele ou mude de plano a qualquer momento.</p>
+                    </div>
+                </div>
+                <div class="btn-assine-centralizado">
+                    <a href="https://wa.me/5548999776300?text=Olá! Tenho interesse em assinar o Clube Laventy" target="_blank" class="btn btn-primary">Assine Já!</a>
+                </div>
+            </section>
+
+            <div class="faq-section">
+                <div class="container">
+                    <h2 class="text-center" style="margin-bottom: 3rem;">Perguntas Frequentes</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Como funciona a assinatura?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Você escolhe seu plano, frequência de entrega (mensal, trimestral ou anual) e recebe sua caixa curada automaticamente. Pode pausar ou cancelar a qualquer momento sem multa.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Posso mudar de fragrância?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sim! Você pode personalizar suas fragrâncias antes de cada entrega. Basta acessar sua conta e selecionar as fragrâncias desejadas.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Qual é a política de cancelamento?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Você pode pausar sua assinatura por até 3 meses ou cancelar a qualquer momento. Não há multas ou taxas de cancelamento.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Há envio grátis?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sim! Todas as assinaturas incluem envio grátis em Portugal Continental. Entregas em Açores e Madeira têm taxa adicional.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Posso fazer upgrade ou downgrade?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Claro! Você pode mudar de plano a qualquer momento. A mudança será refletida na próxima cobrança.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Como funciona o desconto Subscribe & Save?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Assinantes recebem automaticamente 15-22% de desconto comparado ao preço de compra única. Quanto maior o plano, maior o desconto.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="contato" class="page">
+        <section class="container mt-4">
+            <h1 class="text-center">Entre em Contato</h1>
+            <p class="text-center" style="color: #888; margin-bottom: 3rem;">Estamos aqui para ajudar você</p>
+            
+            <div class="contact-container">
+                <div class="contact-form">
+                    <h3 style="margin-bottom: 2rem;">Envie uma Mensagem</h3>
+                    <form onsubmit="handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Nome Completo</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefone (opcional)</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensagem</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Mensagem</button>
+                    </form>
+                </div>
+
+                <div class="contact-info">
+                    <h3 style="margin-bottom: 2rem;">Informações de Contato</h3>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        </div>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <p style="color: #888;">+55 48 99977-6300</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        </div>
+                        <div>
+                            <h4>E-mail</h4>
+                            <p style="color: #888;">contato@laventystudio.com</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        </div>
+                        <div>
+                            <h4>Localização</h4>
+                            <p style="color: #888;">Lisboa, Portugal</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        </div>
+                        <div>
+                            <h4>Horário de Atendimento</h4>
+                            <p style="color: #888;">Segunda a Sexta: 9h - 18h</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h4>Sobre a Laventy Studio</h4>
+                <p>Design sensorial que transforma ambientes através de velas artesanais, difusores e fragrâncias cuidadosamente criadas para você e sua família.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a onclick="showPage('home')">Home</a></li>
+                    <li><a onclick="showPage('somos-luz')">Somos Luz</a></li>
+                    <li><a onclick="showPage('produtos')">Produtos</a></li>
+                    <li><a onclick="showPage('clube-laventy')">Clube Laventy</a></li>
+                    <li><a onclick="showPage('contato')">Contato</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Redes Sociais</h4>
+                <ul>
+                    <li><a href="#" target="_blank">Instagram</a></li>
+                    <li><a href="#" target="_blank">Facebook</a></li>
+                    <li><a href="#" target="_blank">Pinterest</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Laventy Studio by Design Sensorial. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => link.classList.remove('active'));
+            document.getElementById('nav-' + pageId).classList.add('active');
+            const nav = document.getElementById('main-nav');
+            nav.classList.remove('show');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMenu() {
+            const nav = document.getElementById('main-nav');
+            nav.classList.toggle('show');
+        }
+
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const wasActive = faqItem.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            if (!wasActive) {
+                faqItem.classList.add('active');
+            }
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+            const whatsappMessage = `Olá! Meu nome é ${name}.%0A%0AE-mail: ${email}%0A${phone ? 'Telefone: ' + phone + '%0A' : ''}%0AMensagem: ${message}`;
+            window.open(`https://wa.me/5548999776300?text=${whatsappMessage}`, '_blank');
+            event.target.reset();
+        }
+
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('main-nav');
+            const menuToggle = document.querySelector('.menu-toggle');
+            if (!nav.contains(event.target) && !menuToggle.contains(event.target)) {
+                nav.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
