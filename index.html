@@ -259,6 +259,9 @@
             border-radius: 0.75rem;
             overflow: hidden;
             transition: all 0.3s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
         }
 
         .product-card:hover {
@@ -275,6 +278,9 @@
 
         .product-info {
             padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .product-category {
@@ -295,7 +301,192 @@
             font-size: 1.4rem;
             font-weight: 700;
             color: var(--primary-color);
-            margin-bottom: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-type-badge {
+            display: inline-block;
+            background: #f0e8ff;
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-short-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 2.8rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            border-radius: 1.5rem;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            animation: modalIn 0.3s ease-out;
+        }
+
+        @keyframes modalIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #999;
+            z-index: 10;
+            line-height: 1;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--primary-color);
+        }
+
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 1rem;
+        }
+
+        .modal-info h2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-price {
+            font-size: 2rem;
+            color: var(--primary-color);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-description {
+            color: #555;
+            margin-bottom: 2rem;
+            white-space: pre-line;
+        }
+
+        /* Search and Filter Styles */
+        .products-controls {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.9rem 1rem 0.9rem 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(184, 165, 209, 0.1);
+        }
+
+        .search-box svg {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            width: 20px;
+            height: 20px;
+        }
+
+        .filter-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.2rem;
+            border: 1px solid var(--border-color);
+            background: #ffffff;
+            border-radius: 2rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            color: var(--text-color);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: #ffffff;
+            border-color: var(--primary-color);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #888;
+        }
+
+        .no-results svg {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1rem;
+            opacity: 0.5;
         }
 
         .plans-grid {
@@ -467,20 +658,6 @@
             color: var(--primary-color);
         }
 
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr;
-            gap: 4rem;
-            margin: 4rem 0;
-        }
-
-        .contact-form {
-            background: #fcfcfc;
-            padding: 3rem;
-            border-radius: 1rem;
-            border: 1px solid var(--border-color);
-        }
-
         .form-group {
             margin-bottom: 1.5rem;
         }
@@ -498,32 +675,13 @@
             border: 1px solid #ddd;
             border-radius: 0.6rem;
             font-family: inherit;
-            transition: all 0.3s;
+            font-size: 0.95rem;
         }
 
         input:focus, textarea:focus {
             outline: none;
             border-color: var(--primary-color);
             box-shadow: 0 0 0 4px rgba(184, 165, 209, 0.1);
-        }
-
-        .contact-info-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.25rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .contact-info-icon {
-            background: var(--light-bg);
-            color: var(--primary-color);
-            width: 48px;
-            height: 48px;
-            border-radius: 0.75rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
         }
 
         footer {
@@ -589,8 +747,7 @@
 
         @media (max-width: 1024px) {
             .hero { gap: 2rem; }
-            .contact-container { gap: 2rem; }
-            
+
             .logo img {
                 height: 150px;
             }
@@ -664,14 +821,6 @@
                 justify-content: center;
             }
 
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-form {
-                padding: 1.5rem;
-            }
-
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 2.5rem;
@@ -689,6 +838,28 @@
 
             .steps-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .products-controls {
+                flex-direction: column;
+            }
+
+            .search-box {
+                min-width: 100%;
+            }
+
+            .filter-container {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .modal-body {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+            }
+
+            .modal-image {
+                height: 250px;
             }
         }
 
@@ -709,6 +880,15 @@
                 width: 200px;
                 height: 200px;
             }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-btn {
+                font-size: 0.85rem;
+                padding: 0.5rem 1rem;
+            }
         }
     </style>
 </head>
@@ -724,7 +904,6 @@
                 <a onclick="showPage('somos-luz')" id="nav-somos-luz">Somos Luz</a>
                 <a onclick="showPage('produtos')" id="nav-produtos">Produtos</a>
                 <a onclick="showPage('clube-laventy')" id="nav-clube-laventy">Clube Laventy</a>
-                <a onclick="showPage('contato')" id="nav-contato">Contato</a>
             </nav>
 
             <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">
@@ -753,7 +932,7 @@
         <section class="section-somos-luz">
             <div class="container">
                 <h2>Somos Luz</h2>
-                <p>A Laventy Studio by Design Sensorial foi idealizada com o firme propósito de entregar uma experiencia sensorial por meio da produção de Velas aromáticas handmade, difusores e coleções pet-safe pra você e sua família.</p>
+                <p>Laventy nasce do desejo de criar mais calma no dia a dia. Produzimos velas artesanais com estética minimalista, aromas acolhedores e atenção a cada detalhe. Cada peça é feita em pequenos lotes, respeitando o tempo do processo e o propósito de transformar ambientes em espaços de aconchego, presença e bem-estar.</p>
                 <div class="ceo-image-container">
                     <div class="ceo-image-wrapper">
                         <img src="https://i.postimg.cc/Fs5TZd1j/Black%20White%20Elegant%20Typography%20Monogram%20Logo.png" alt="Ana Paula Stuart - CEO Laventy Studio">
@@ -766,33 +945,26 @@
             <h2 class="text-center">Por Que Assinar?</h2>
             <p class="text-center" style="color: #888; margin-bottom: 3rem;">Benefícios exclusivos para membros do Clube Laventy</p>
             <div class="products-grid">
-                <div class="product-card text-center" style="padding: 2rem; border: none;">
+                <div class="product-card text-center" style="padding: 2rem; border: none; cursor: default;">
                     <div class="benefit-icon" style="margin: 0 auto 1rem;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M12 8v13"></path><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"></path></svg>
                     </div>
                     <h4>Entrega Automática</h4>
                     <p style="color: #888;">Receba sua caixa curada todo mês na sua porta</p>
                 </div>
-                <div class="product-card text-center" style="padding: 2rem; border: none;">
+                <div class="product-card text-center" style="padding: 2rem; border: none; cursor: default;">
                     <div class="benefit-icon" style="margin: 0 auto 1rem;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><circle cx="8" cy="8" r="1.5"></circle></svg>
                     </div>
-                    <h4>Desconto Exclusivo</h4>
-                    <p style="color: #888;">Economize até 22% em assinaturas vs. compra única</p>
+                    <h4>Curadoria Especializada</h4>
+                    <p style="color: #888;">Seleção mensal de produtos exclusivos</p>
                 </div>
-                <div class="product-card text-center" style="padding: 2rem; border: none;">
+                <div class="product-card text-center" style="padding: 2rem; border: none; cursor: default;">
                     <div class="benefit-icon" style="margin: 0 auto 1rem;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
                     </div>
-                    <h4>Seleção Curada</h4>
-                    <p style="color: #888;">Fragrâncias rotativas escolhidas por artesãos</p>
-                </div>
-                <div class="product-card text-center" style="padding: 2rem; border: none;">
-                    <div class="benefit-icon" style="margin: 0 auto 1rem;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
-                    </div>
-                    <h4>Pausa Quando Quiser</h4>
-                    <p style="color: #888;">Flexibilidade total - pause ou cancele sem multa</p>
+                    <h4>Comunidade Exclusiva</h4>
+                    <p style="color: #888;">Acesso a eventos e conteúdo especial</p>
                 </div>
             </div>
         </section>
@@ -815,65 +987,46 @@
     <div id="produtos" class="page">
         <section class="container mt-4">
             <h1 class="text-center">Nossos Produtos</h1>
-            <p class="text-center" style="color: #888; margin-bottom: 3rem;">Compre avulso ou combine com sua assinatura</p>
+            <p class="text-center" style="color: #888; margin-bottom: 2rem;">Clique no produto para ver a descrição completa</p>
             
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-image" style="background-image: url('https://laventystud-nqtqqhea.manus.space/images/hero-candles.jpg');"></div>
-                    <div class="product-info">
-                        <div class="product-category">Vela Aromática</div>
-                        <div class="product-name">Vela Lavanda Relax</div>
-                        <div class="product-price">€22.00</div>
-                        <a href="https://wa.me/351934975262?text=Olá! Tenho interesse na Vela Lavanda Relax" target="_blank" class="btn btn-primary" style="width: 100%;">Comprar Agora</a>
-                    </div>
+            <!-- Search and Filter Controls -->
+            <div class="products-controls">
+                <div class="search-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                    <input type="text" id="searchInput" placeholder="Pesquisar produtos..." onkeyup="filterProducts()">
                 </div>
-                <div class="product-card">
-                    <div class="product-image" style="background-image: url('https://laventystud-nqtqqhea.manus.space/images/lifestyle-ambiance.jpg');"></div>
-                    <div class="product-info">
-                        <div class="product-category">Difusor</div>
-                        <div class="product-name">Difusor Jasmim Noturno</div>
-                        <div class="product-price">€28.00</div>
-                        <a href="https://wa.me/351934975262?text=Olá! Tenho interesse no Difusor Jasmim Noturno" target="_blank" class="btn btn-primary" style="width: 100%;">Comprar Agora</a>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image" style="background-image: url('https://laventystud-nqtqqhea.manus.space/images/subscription-box.jpg');"></div>
-                    <div class="product-info">
-                        <div class="product-category">Kit</div>
-                        <div class="product-name">Kit Verbena Fresca</div>
-                        <div class="product-price">€35.00</div>
-                        <a href="https://wa.me/351934975262?text=Olá! Tenho interesse no Kit Verbena Fresca" target="_blank" class="btn btn-primary" style="width: 100%;">Comprar Agora</a>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image" style="background-image: url('https://laventystud-nqtqqhea.manus.space/images/hero-candles.jpg');"></div>
-                    <div class="product-info">
-                        <div class="product-category">Vela Pet-Safe</div>
-                        <div class="product-name">Vela Citronela Natural</div>
-                        <div class="product-price">€24.00</div>
-                        <a href="https://wa.me/351934975262?text=Olá! Tenho interesse na Vela Citronela Natural" target="_blank" class="btn btn-primary" style="width: 100%;">Comprar Agora</a>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image" style="background-image: url('https://laventystud-nqtqqhea.manus.space/images/lifestyle-ambiance.jpg');"></div>
-                    <div class="product-info">
-                        <div class="product-category">Difusor</div>
-                        <div class="product-name">Difusor Eucalipto Zen</div>
-                        <div class="product-price">€26.00</div>
-                        <a href="https://wa.me/351934975262?text=Olá! Tenho interesse no Difusor Eucalipto Zen" target="_blank" class="btn btn-primary" style="width: 100%;">Comprar Agora</a>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image" style="background-image: url('https://laventystud-nqtqqhea.manus.space/images/subscription-box.jpg');"></div>
-                    <div class="product-info">
-                        <div class="product-category">Kit Premium</div>
-                        <div class="product-name">Kit Spa Experience</div>
-                        <div class="product-price">€45.00</div>
-                        <a href="https://wa.me/351934975262?text=Olá! Tenho interesse no Kit Spa Experience" target="_blank" class="btn btn-primary" style="width: 100%;">Comprar Agora</a>
-                    </div>
+                <div class="filter-container">
+                    <button class="filter-btn active" onclick="filterByType('all')">Todos</button>
+                    <button class="filter-btn" onclick="filterByType('Vela de Luz')">Vela de Luz</button>
+                    <button class="filter-btn" onclick="filterByType('Vela Aromática')">Vela Aromática</button>
                 </div>
             </div>
+
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be dynamically inserted here -->
+            </div>
+            <div id="noResults" class="no-results" style="display: none;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <h3>Nenhum produto encontrado</h3>
+                <p>Tente ajustar seus filtros ou termos de busca</p>
+            </div>
         </section>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-modal" onclick="closeModal(event)">&times;</span>
+            <div class="modal-body" id="modalBody">
+                <!-- Modal content will be inserted here -->
+            </div>
+        </div>
     </div>
 
     <div id="clube-laventy" class="page">
@@ -896,7 +1049,7 @@
                         <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Acesso a vendas exclusivas</li>
                         <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Personalização de fragrâncias</li>
                     </ul>
-                    <a href="https://wa.me/351934975262?text=Olá! Quero assinar o plano Básico" target="_blank" class="btn btn-secondary" style="width: 100%;">Assinar Básico</a>
+                    <a href="https://wa.me/5548999776300?text=Olá! Quero assinar o plano Básico" target="_blank" class="btn btn-secondary" style="width: 100%;">Assinar Básico</a>
                 </div>
 
                 <div class="plan-card featured">
@@ -915,7 +1068,7 @@
                         <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Acesso a vendas exclusivas</li>
                         <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Personalização de fragrâncias</li>
                     </ul>
-                    <a href="https://wa.me/351934975262?text=Olá! Quero assinar o plano Essencial" target="_blank" class="btn btn-primary" style="width: 100%;">Assinar Essencial</a>
+                    <a href="https://wa.me/5548999776300?text=Olá! Quero assinar o plano Essencial" target="_blank" class="btn btn-primary" style="width: 100%;">Assinar Essencial</a>
                 </div>
 
                 <div class="plan-card">
@@ -932,7 +1085,7 @@
                         <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Pausa/cancelamento flexível</li>
                         <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Consulta com especialista pet</li>
                     </ul>
-                    <a href="https://wa.me/351934975262?text=Olá! Quero assinar o plano Pet-Safe" target="_blank" class="btn btn-secondary" style="width: 100%;">Assinar Pet-Safe</a>
+                    <a href="https://wa.me/5548999776300?text=Olá! Quero assinar o plano Pet-Safe" target="_blank" class="btn btn-secondary" style="width: 100%;">Assinar Pet-Safe</a>
                 </div>
             </div>
 
@@ -942,249 +1095,205 @@
                     <div class="step-card">
                         <div class="step-number">1</div>
                         <h3>Escolha seu Plano</h3>
-                        <p>Selecione o plano que melhor se adequa ao seu estilo de vida.</p>
+                        <p>Selecione entre as opções Básico, Essencial ou Pet-Safe, conforme suas preferências.</p>
                     </div>
                     <div class="step-card">
                         <div class="step-number">2</div>
-                        <h3>Escolha a Frequência</h3>
-                        <p>Mensal, trimestral ou anual. Você controla o ritmo.</p>
+                        <h3>Receba Curado</h3>
+                        <p>A cada mês, receba uma seleção especial de produtos premium entregues na sua porta.</p>
                     </div>
                     <div class="step-card">
                         <div class="step-number">3</div>
-                        <h3>Receba Automaticamente</h3>
-                        <p>Sua caixa curada chega na sua porta conforme agendado.</p>
+                        <h3>Aproveite a Experiência</h3>
+                        <p>Desfrute de momentos de calma e bem-estar com produtos handmade de qualidade.</p>
                     </div>
-                    <div class="step-card">
-                        <div class="step-number">4</div>
-                        <h3>Gerencie Quando Quiser</h3>
-                        <p>Pause, cancele ou mude de plano a qualquer momento.</p>
-                    </div>
-                </div>
-                <div class="btn-assine-centralizado">
-                    <a href="https://wa.me/351934975262?text=Olá! Tenho interesse em assinar o Clube Laventy" target="_blank" class="btn btn-primary">Assine Já!</a>
                 </div>
             </section>
-
-            <div class="faq-section">
-                <div class="container">
-                    <h2 class="text-center" style="margin-bottom: 3rem;">Perguntas Frequentes</h2>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
-                            <span>Como funciona a assinatura?</span>
-                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Você escolhe seu plano, frequência de entrega (mensal, trimestral ou anual) e recebe sua caixa curada automaticamente. Pode pausar ou cancelar a qualquer momento sem multa.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
-                            <span>Posso mudar de fragrância?</span>
-                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Sim! Você pode personalizar suas fragrâncias antes de cada entrega. Basta acessar sua conta e selecionar as fragrâncias desejadas.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
-                            <span>Qual é a política de cancelamento?</span>
-                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Você pode pausar sua assinatura por até 3 meses ou cancelar a qualquer momento. Não há multas ou taxas de cancelamento.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
-                            <span>Há envio grátis?</span>
-                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Sim! Todas as assinaturas incluem envio grátis em Portugal Continental. Entregas em Açores e Madeira têm taxa adicional.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
-                            <span>Posso fazer upgrade ou downgrade?</span>
-                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Claro! Você pode mudar de plano a qualquer momento. A mudança será refletida na próxima cobrança.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
-                            <span>Como funciona o desconto Subscribe & Save?</span>
-                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Assinantes recebem automaticamente 15-22% de desconto comparado ao preço de compra única. Quanto maior o plano, maior o desconto.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="contato" class="page">
-        <section class="container mt-4">
-            <h1 class="text-center">Entre em Contato</h1>
-            <p class="text-center" style="color: #888; margin-bottom: 3rem;">Estamos aqui para ajudar você</p>
-            
-            <div class="contact-container">
-                <div class="contact-form">
-                    <h3 style="margin-bottom: 2rem;">Envie uma Mensagem</h3>
-                    <form onsubmit="handleSubmit(event)">
-                        <div class="form-group">
-                            <label for="name">Nome Completo</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">E-mail</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Telefone (opcional)</label>
-                            <input type="tel" id="phone" name="phone">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Mensagem</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Mensagem</button>
-                    </form>
-                </div>
-
-                <div class="contact-info">
-                    <h3 style="margin-bottom: 2rem;">Informações de Contato</h3>
-                    
-                    <div class="contact-info-item">
-                        <div class="contact-info-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                        </div>
-                        <div>
-                            <h4>WhatsApp</h4>
-                            <p style="color: #888;">+55 48 99977-6300</p>
-                        </div>
-                    </div>
-
-                    <div class="contact-info-item">
-                        <div class="contact-info-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                        </div>
-                        <div>
-                            <h4>E-mail</h4>
-                            <p style="color: #888;">contato@laventystudio.com</p>
-                        </div>
-                    </div>
-
-                    <div class="contact-info-item">
-                        <div class="contact-info-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                        </div>
-                        <div>
-                            <h4>Localização</h4>
-                            <p style="color: #888;">Lisboa, Portugal</p>
-                        </div>
-                    </div>
-
-                    <div class="contact-info-item">
-                        <div class="contact-info-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                        </div>
-                        <div>
-                            <h4>Horário de Atendimento</h4>
-                            <p style="color: #888;">Segunda a Sexta: 9h - 18h</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
     </div>
 
     <footer>
-        <div class="container footer-content">
-            <div class="footer-section">
-                <h4>Sobre a Laventy Studio</h4>
-                <p>Design sensorial que transforma ambientes através de velas artesanais, difusores e fragrâncias cuidadosamente criadas para você e sua família.</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Laventy Studio</h4>
+                    <p>Design Sensorial & Assinaturas. Criando momentos de calma e propósito através de velas artesanais premium.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a onclick="showPage('home')">Home</a></li>
+                        <li><a onclick="showPage('somos-luz')">Somos Luz</a></li>
+                        <li><a onclick="showPage('produtos')">Produtos</a></li>
+                        <li><a onclick="showPage('clube-laventy')">Clube Laventy</a></li>
+                    </ul>
+                </div>
+                
             </div>
-            <div class="footer-section">
-                <h4>Links Rápidos</h4>
-                <ul>
-                    <li><a onclick="showPage('home')">Home</a></li>
-                    <li><a onclick="showPage('somos-luz')">Somos Luz</a></li>
-                    <li><a onclick="showPage('produtos')">Produtos</a></li>
-                    <li><a onclick="showPage('clube-laventy')">Clube Laventy</a></li>
-                    <li><a onclick="showPage('contato')">Contato</a></li>
-                </ul>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Laventy Studio. Todos os direitos reservados.</p>
             </div>
-            <div class="footer-section">
-                <h4>Redes Sociais</h4>
-                <ul>
-                    <li><a href="#" target="_blank">Instagram</a></li>
-                    <li><a href="#" target="_blank">Facebook</a></li>
-                    <li><a href="#" target="_blank">Pinterest</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Laventy Studio by Design Sensorial. Todos os direitos reservados.</p>
         </div>
     </footer>
 
     <script>
+        // Product data
+        const productsData = [
+            {"id": 1, "name": "FLORAL LAVENTY", "price": "18,00€", "desc": "Recipiente: copo de vidro com laço decorativo.\nPerfil: floral suave.\nIndicação: presente, datas especiais, decoração.", "image": "https://i.postimg.cc/NfQCJkR0/1-FLORAL-LAVENTY.png", "type": "Vela de Luz"},
+            {"id": 2, "name": "SUCULENTAS ZEN", "price": "48,00€", "desc": "Recipiente: cerâmica decorativa.\nPerfil: decorativo e aromático suave.\nIndicação: salas, escritórios, presente sofisticado.", "image": "https://i.postimg.cc/NfQCJkRM/2%20SUCULENTAS%20ZEN.png", "type": "Vela de Luz"},
+            {"id": 3, "name": "Jardim de morango", "price": "17,00€", "desc": "O jardim de Morango é uma vela artesanal esculpida à mão, onde flores delicadas repousam entre morangos vibrantes, criando uma peça que encanta antes mesmo de ser acesa.\nRecipiente: caixa decorativa.\nPerfil: floral suave.\nIndicação: presente, datas especiais, decoração.", "image": "https://i.postimg.cc/SNm1Tfcj/3%20JARDIM%20DE%20MORANGO.png", "type": "Vela de Luz"},
+            {"id": 4, "name": "Buquê Eternitá", "price": "18,00€", "desc": "O Buquê Eternità é uma vela artesanal esculpida em formato floral, onde rosas vermelhas intensas encontram flores brancas delicadas, criando uma composição clássica e atemporal.\nRecipiente: cerâmica decorativa.\nPerfil: suave Acabamento delicado e sofisticado.\nIndicação: presente sofisticado.", "image": "https://i.postimg.cc/4NX2LQpx/4%20Buquê%20eternitá.png", "type": "Vela de Luz"},
+            {"id": 5, "name": "Luz da sicília", "price": "28,00€", "desc": "Vela artesanal com aroma cítrico fresco e suave.\nA lima traz sensação de leveza, limpeza e frescor imediato ao ambiente, sem ser intensa ou enjoativa.\nIdeal para dias claros, espaços bem iluminados e momentos em que você quer energia tranquila, não agitação.\nPerfil olfativo: cítrico leve.\nSensação: fresco, limpo e natural.\nIndicação: sala, cozinha, entrada, dias quentes.", "image": "https://i.postimg.cc/Yq8nJLx0/5%20Luz%20da%20sicília.png", "type": "Vela Aromática"},
+            {"id": 6, "name": "Petit Laventy", "price": "28,00€", "desc": "Composição: urso, flores e coração decorativo.\nAcabamento: artesanal.\nIndicação: presente romântico, datas especiais, decoração afetiva.", "image": "https://i.postimg.cc/sDK6tGJB/6%20petit%20laventy.png", "type": "Vela de Luz"},
+            {"id": 7, "name": "Cacao Intense", "price": "18,00€", "desc": "Composição: vela em camadas com acabamento cremoso.\nEstética: inspiração gourmet.\nIndicação: sala, espaço de café.", "image": "https://i.postimg.cc/rFgnvR9D/7%20Cacao%20Intense.png", "type": "Vela Aromática"},
+            {"id": 8, "name": "Élite", "price": "38,00€", "desc": "Uma peça decorativa que une leveza, textura e elegância atemporal. Ideal para presentear com sofisticação ou compor ambientes claros e refinados.", "image": "https://i.postimg.cc/kXw1kRyR/8%20Élite.png", "type": "Vela de Luz"},
+            {"id": 9, "name": "Iconic", "price": "38,00€", "desc": "Linhas limpas e proporções equilibradas transformam esta peça em um objeto de destaque discreto, perfeito para interiores modernos.", "image": "https://i.postimg.cc/02ZWLKCY/9%20Iconic.png", "type": "Vela de Luz"},
+            {"id": 10, "name": "Signature", "price": "58,00€", "desc": "Forma icónica reinterpretada em cera. Uma criação que combina arte, identidade e design, pensada para quem aprecia peças autorais com personalidade.", "image": "https://i.postimg.cc/BQNYdPCc/10%20SIGNATURE.png", "type": "Vela de Luz"},
+            {"id": 11, "name": "Buquê Rosado", "price": "4,80€", "desc": "Indicação: aniversários, lembranças especiais, datas afetivas.\nAcabamento: artesanal.", "image": "https://i.postimg.cc/5Np7ZQm5/11%20buquê%20Rosado.png", "type": "Vela de Luz"},
+            {"id": 12, "name": "Aurora Floral", "price": "18,00€", "desc": "Indicação: decoração refinada, centro de mesa, presente especial.\nAcabamento: artesanal detalhado.", "image": "https://i.postimg.cc/PrK3BvMM/12%20Aurora%20Floral.png", "type": "Vela de Luz"},
+            {"id": 13, "name": "Jardim em Caixa", "price": "18,00€", "desc": "Indicação: presente exclusivo, datas comemorativas.\nAcabamento: artesanal com embalagem premium.", "image": "https://i.postimg.cc/VL4G30FD/13%20Jardim%20em%20Caixa.png", "type": "Vela de Luz"},
+            {"id": 14, "name": "Coração de Algodão", "price": "13,00€", "desc": "Aroma leve e aconchegante, perfeito para quem ama a sensação de roupa limpa e bem cuidada.\nIndicação: closets, guarda-roupas, lavandarias.", "image": "https://i.postimg.cc/g2JSdcMh/14%20Coração%20de%20Algodão.png", "type": "Vela Aromática"},
+            {"id": 15, "name": "Corações Perfumados", "price": "3,38€", "desc": "Modelo com acabamento refinado e detalhe em cordão natural, criado para pendurar diretamente no cabide.\nDiscreto, elegante e funcional, perfuma sem exageros.\nIndicação: cabides, gavetas, malas de viagem.", "image": "https://i.postimg.cc/t4TSyRrP/15%20Corações%20Perfumados.png", "type": "Vela Aromática"},
+            {"id": 16, "name": "Flor de Armário", "price": "4,58€", "desc": "Vela aromática com relevo floral, pensada para deixar um toque delicado nas peças guardadas.\nIndicação: closets, armários, espaços pequenos.", "image": "https://i.postimg.cc/K8zqFc9B/16%20Flor%20de%20Armário.png", "type": "Vela Aromática"},
+            {"id": 17, "name": "Jardim Rosé", "price": "18,00€", "desc": "Vela floral em caixa decorativa.\nUma composição delicada com flor central esculpida à mão, envolta por detalhes suaves que lembram um pequeno jardim romântico.\nAcabamento artesanal.\nPeça presenteável.\nIndicação: aniversários, datas especiais, lembranças afetivas.", "image": "https://i.postimg.cc/y8dQB6fj/17%20Jardim%20Rosé.png", "type": "Vela de Luz"},
+            {"id": 18, "name": "Corações de Luz", "price": "12,80€", "desc": "Vela decorativa em copo com relevo de corações.\nUm design romântico e contemporâneo, onde camadas suaves revelam delicados corações em transparência. Uma peça que une ternura e modernidade.\nAroma suave e envolvente.", "image": "https://i.postimg.cc/YC9nk2X8/18%20Corações%20de%20Luz.png", "type": "Vela de Luz"},
+            {"id": 19, "name": "Afeto em Flor", "price": "38,00€", "desc": "Vela floral em formato de buquê.\nInspirada em arranjos delicados, combina estética romântica e presença elegante. Cada detalhe é moldado manualmente, tornando cada peça única.\nPerfeita para surpreender com carinho.\nAcabamento artesanal refinado.", "image": "https://i.postimg.cc/pLTGxV00/19%20AFETO%20EM%20flor.png", "type": "Vela de Luz"},
+            {"id": 20, "name": "Doce Rosé", "price": "28,00€", "desc": "Vela decorativa com flor.\nUma composição criativa que mistura textura e delicadeza. A flor central traz romantismo, enquanto as esferas adicionam um toque contemporâneo.\nIdeal para presente especial.\nPeça autoral Laventy.", "image": "https://i.postimg.cc/Bn6YsZhm/20%20Doce%20rosé.png", "type": "Vela de Luz"},
+            {"id": 21, "name": "Flor de Memória", "price": "12,00€", "desc": "Vela floral em vidro.\nModelo minimalista com flor esculpida em destaque. Elegante, delicada e perfeita para criar atmosfera acolhedora.\nAcabamento artesanal.", "image": "https://i.postimg.cc/XYJH3N2P/21%20Flor%20de%20memória.png", "type": "Vela de Luz"},
+            {"id": 22, "name": "Romance Laventy", "price": "45,00€", "desc": "Arranjo floral com urso e flores vermelhas.\nUma composição apaixonante que une flores esculpidas à mão e detalhes delicados em uma caixa elegante. Ideal para surpreender com presença e emoção.\nPerfeita para Dia dos Namorados, aniversários e pedidos especiais.\nAcabamento artesanal refinado.", "image": "https://i.postimg.cc/t4TSyRrw/22%20romance%20laventy.png", "type": "Vela de Luz"},
+            {"id": 23, "name": "Taça Amor de Morango", "price": "49,00€", "desc": "Inspirada na sobremesa mais romântica do mundo, essa vela em formato de taça traz o contraste perfeito entre o branco cremoso e o vermelho intenso dos morangos.\nIdeal para surpreender em um jantar especial, pedido de namoro ou presente criativo para quem ama detalhes únicos.", "image": "https://i.postimg.cc/cLH9Z1Dj/23%20taça%20amor%20de%20morango.png", "type": "Vela de Luz"},
+            {"id": 24, "name": "Coleção Paixão", "price": "18,00€", "desc": "Um conjunto de rosas vermelhas esculpidas em cera que simbolizam amor eterno. Algumas flores revelam delicadamente a chama no centro, criando uma atmosfera intimista e acolhedora.\nCada rosa é feita à mão, com acabamento detalhado que impressiona à primeira vista.\n\nValores:\n• Conjunto com 6 rosas: 18€\n• Valor unitário: 3€", "image": "https://i.postimg.cc/P5x3hf6B/24%20coleção%20paixão.png", "type": "Vela de Luz"},
+            {"id": 25, "name": "Flor de Jardim Clássico", "price": "15,00€", "desc": "Um arranjo floral elegante em vaso canelado, combinando rosas vermelhas e brancas com pequenos detalhes delicados.\nEssa peça transmite equilíbrio entre paixão e pureza.\nIdeal para ambientes refinados, mesas postas especiais e presentes marcantes.", "image": "https://i.postimg.cc/qvRb0BmP/25%20Flor%20de%20jardim%20clássico.png", "type": "Vela de Luz"},
+            {"id": 26, "name": "Box Romance Intenso", "price": "29,00€", "desc": "Um arranjo com rosas vermelhas volumosas e detalhes sutis que criam impacto visual imediato.\nElegante, imponente e emocional.", "image": "https://i.postimg.cc/3xRS7rST/26%20box%20romance%20intenso.png", "type": "Vela de Luz"},
+            {"id": 27, "name": "Baby Laventy", "price": "11,90€", "desc": "Uma composição delicada que traduz a pureza da infância em forma de arte.\nEstética contemporânea.\nAcabamento artesanal premium.\nCriada para marcar os primeiros capítulos de uma história que está começando.\n\nValores:\n• Unidade: 11,90€\n• Kit 10 unidades: 109€\n• Eventos (mín. 20 unid.): 9,50€ por unidade", "image": "https://i.postimg.cc/qvRb0Bbr/27%20baby%20laventy.png", "type": "Vela de Luz"},
+            {"id": 28, "name": "Flor de Armário (Aromática)", "price": "9,90€", "desc": "Delicada, elegante e funcional.\nVela aromática desenvolvida especialmente para perfumar armários, closets e gavetas com suavidade e sofisticação.\nBasta pendurar no cabide ou colocar entre as roupas para manter o ambiente com fragrância leve e agradável por semanas.\n\nValores:\n• Unidade: 9,90€\n• Kit com 3 unidades: 26€\n• Kit com 6 unidades: 49€", "image": "https://i.postimg.cc/qvRb0Bb0/28%20Flor%20de%20armário.png", "type": "Vela Aromática"},
+            {"id": 29, "name": "Essência Natural", "price": "8,90€", "desc": "Vela perfumada com aplicação de elementos botânicos secos. Desenvolvido para perfumar armários, closets e gavetas com suavidade e elegância.\n\nValores:\n• Unidade: 8,90€\n• Kit 3 unidades: 24€\n• Eventos (mín. 20 unid.): 6,90€ por unidade", "image": "https://i.postimg.cc/bwB6vXM7/29%20Essência%20Natural.png", "type": "Vela Aromática"},
+            {"id": 30, "name": "Flor de Luz", "price": "10,90€", "desc": "Lembrança aromática com aplicação floral artesanal e cartão personalizado com nome, data ou mensagem especial.\nIdeal para chá de bebê, batizados e eventos delicados. Um presente que une perfume, significado e personalização.\n\nValores:\n• Unidade personalizada: 10,90€\n• Encomenda evento (mín. 20 unid.): 8,50€ por unidade", "image": "https://i.postimg.cc/vZNPmRky/30%20Flor%20de%20Luz.png", "type": "Vela Aromática"},
+            {"id": 31, "name": "Rosé Encanto", "price": "9,90€", "desc": "Vela aromática decorativa com acabamento floral e laço elegante. Perfeita como lembrança de eventos ou detalhe sofisticado para presentear.\n\nValores:\n• Unidade: 9,90€\n• Kit 4 unidades: 36€\n• Eventos (mín. 20 unid.): 7,90€ por unidade", "image": "https://i.postimg.cc/DwMCzVHT/31%20Rosé%20Encanto.png", "type": "Vela Aromática"},
+            {"id": 32, "name": "Teddy Love", "price": "24,00€", "desc": "Conjunto canelado com detalhes em mini corações e acompanha vela decorativa em formato de ursinho.\nIdeal para: Dia dos Namorados, Aniversários.\n\nKit com 1 vela pote + 1 ursinho + bandeja: 24€", "image": "https://i.postimg.cc/NjzN0hSY/32%20Teddy%20love.png", "type": "Vela de Luz"},
+            {"id": 33, "name": "Serenità", "price": "34,00€", "desc": "Rosas e folhas em relevo sobre base minimalista, criando uma peça decorativa que perfuma e transforma o ambiente com suavidade e elegância.\nIdeal para: Presente sofisticado, Dia das mães.\n\nPeça completa: 34€", "image": "https://i.postimg.cc/ht5CGF6c/33%20serenità.png", "type": "Vela de Luz"},
+            {"id": 34, "name": "Linha Essência Personalizada Padrinhos", "price": "12,00€", "desc": "Velas personalizadas com mensagem exclusiva, ideais para presentear padrinhos, madrinhas ou pessoas especiais.\nUm presente afetivo, delicado e cheio de significado.\nFragrância suave e envolvente.\nPersonalização incluída na etiqueta.\n\nValores:\n• Unidade: 12,00€\n• Encomendas acima de 10 unidades: 9,00€ cada", "image": "https://i.postimg.cc/P5R6qG95/34%20Linha%20Essência%20Personalizada%20Padrinhos.png", "type": "Vela Aromática"},
+            {"id": 35, "name": "Rosa Suprema", "price": "18,00€", "desc": "Um coração moldado em rosas intensas, símbolo de paixão, força e elegância.\nPeça exclusiva: 18,00€", "image": "https://i.postimg.cc/FHBPKt87/35%20Rosa%20suprema.png", "type": "Vela de Luz"},
+            {"id": 36, "name": "Elegance Rose", "price": "18,00€", "desc": "Uma peça decorativa que transforma o ambiente com romantismo e suavidade.\nPeça individual: 18,00€", "image": "https://i.postimg.cc/8zKYrfJj/36-Elegance-rose.png", "type": "Vela de Luz"},
+            {"id": 37, "name": "Tulipa Serena", "price": "42,00€", "desc": "Perfeito para quem ama flores, mas quer algo duradouro e elegante.\nFragrância suave personalizável.\nVaso completo: 42€", "image": "https://i.postimg.cc/Qdy6MLwF/37%20Tulipa%20serena.png", "type": "Vela de Luz"}
+        ];
+
+        let currentFilter = 'all';
+        let currentSearch = '';
+
+        function renderProducts(products) {
+            const grid = document.getElementById('productsGrid');
+            const noResults = document.getElementById('noResults');
+            
+            if (products.length === 0) {
+                grid.innerHTML = '';
+                noResults.style.display = 'block';
+                return;
+            }
+            
+            noResults.style.display = 'none';
+            grid.innerHTML = products.map(product => `
+                <div class="product-card" onclick="openProductModal(${product.id})">
+                    <div class="product-image" style="background-image: url('${product.image}');"></div>
+                    <div class="product-info">
+                        <div class="product-type-badge">${product.type}</div>
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-price">${product.price}</div>
+                        <div class="product-short-desc">${product.desc.split('\n')[0]}</div>
+                        <button class="btn btn-secondary" style="width: 100%; margin-top: auto;">Ver Detalhes</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openProductModal(productId) {
+            const product = productsData.find(p => p.id === productId);
+            if (!product) return;
+
+            const modal = document.getElementById('productModal');
+            const modalBody = document.getElementById('modalBody');
+
+            modalBody.innerHTML = `
+                <div class="modal-image" style="background-image: url('${product.image}');"></div>
+                <div class="modal-info">
+                    <div class="product-type-badge">${product.type}</div>
+                    <h2>${product.name}</h2>
+                    <div class="modal-price">${product.price}</div>
+                    <div class="modal-description">${product.desc}</div>
+                    <a href="https://wa.me/5548999776300?text=Olá! Tenho interesse no produto: ${product.name}" target="_blank" class="btn btn-primary" style="width: 100%;">Comprar via WhatsApp</a>
+                </div>
+            `;
+
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeModal(event) {
+            const modal = document.getElementById('productModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function filterProducts() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            currentSearch = searchInput;
+            
+            let filtered = productsData.filter(p => {
+                const matchesSearch = p.name.toLowerCase().includes(searchInput) || 
+                                     p.desc.toLowerCase().includes(searchInput);
+                const matchesType = currentFilter === 'all' || p.type === currentFilter;
+                return matchesSearch && matchesType;
+            });
+            
+            renderProducts(filtered);
+        }
+
+        function filterByType(type) {
+            currentFilter = type;
+            
+            // Update button states
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            filterProducts();
+        }
+
         function showPage(pageId) {
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.classList.remove('active'));
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
             document.getElementById(pageId).classList.add('active');
-            const navLinks = document.querySelectorAll('nav a');
-            navLinks.forEach(link => link.classList.remove('active'));
-            document.getElementById('nav-' + pageId).classList.add('active');
-            const nav = document.getElementById('main-nav');
-            nav.classList.remove('show');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Update nav links
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.getElementById(`nav-${pageId}`)?.classList.add('active');
+            
+            // Close mobile menu
+            document.getElementById('main-nav').classList.remove('show');
+            
+            // If showing products page, render products
+            if (pageId === 'produtos') {
+                renderProducts(productsData);
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
         }
 
         function toggleMenu() {
-            const nav = document.getElementById('main-nav');
-            nav.classList.toggle('show');
+            document.getElementById('main-nav').classList.toggle('show');
         }
 
-        function toggleFAQ(element) {
-            const faqItem = element.parentElement;
-            const wasActive = faqItem.classList.contains('active');
-            document.querySelectorAll('.faq-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            if (!wasActive) {
-                faqItem.classList.add('active');
-            }
-        }
-
-        function handleSubmit(event) {
-            event.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const message = document.getElementById('message').value;
-            const whatsappMessage = `Olá! Meu nome é ${name}.%0A%0AE-mail: ${email}%0A${phone ? 'Telefone: ' + phone + '%0A' : ''}%0AMensagem: ${message}`;
-            window.open(`https://wa.me/351934975262?text=${whatsappMessage}`, '_blank');
-            event.target.reset();
-        }
-
-        document.addEventListener('click', function(event) {
-            const nav = document.getElementById('main-nav');
-            const menuToggle = document.querySelector('.menu-toggle');
-            if (!nav.contains(event.target) && !menuToggle.contains(event.target)) {
-                nav.classList.remove('show');
-            }
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts(productsData);
         });
     </script>
 </body>
