@@ -250,6 +250,7 @@
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            justify-content: center;
             gap: 2rem;
             margin: 3rem 0;
         }
@@ -364,12 +365,24 @@
             position: absolute;
             right: 1.5rem;
             top: 1.5rem;
-            font-size: 2rem;
+            font-size: 2.5rem;
             cursor: pointer;
-            color: #999;
-            z-index: 10;
+            color: #333;
+            z-index: 100;
             line-height: 1;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            background: rgba(255,255,255,0.8);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        .close-modal:hover {
+            color: var(--primary-color);
+            background: #fff;
+            transform: rotate(90deg);
         }
 
         .close-modal:hover {
@@ -1127,15 +1140,57 @@
                         <li><a onclick="showPage('somos-luz')">Somos Luz</a></li>
                         <li><a onclick="showPage('produtos')">Produtos</a></li>
                         <li><a onclick="showPage('clube-laventy')">Clube Laventy</a></li>
+                        <li><a onclick="openPrivacyModal()">Política de Privacidade</a></li>
                     </ul>
                 </div>
                 
+
+                <div class="footer-section">
+                    <h4>Siga-nos</h4>
+                    <a href="https://www.instagram.com/laventy.studio/" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; color: #aaa; text-decoration: none; transition: color 0.3s;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        <span>Instagram</span>
+                    </a>
+                </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2024 Laventy Studio. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
+
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacyModal" class="modal" onclick="closePrivacyModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-modal" onclick="closePrivacyModal(event)">&times;</span>
+            <div style="padding: 2.5rem;">
+                <h2 class="text-center" style="margin-bottom: 2rem;">Política de Privacidade</h2>
+                <div style="color: #444; line-height: 1.6;">
+                    <p>A sua privacidade é importante para nós. É política do <strong>Laventy Studio</strong> respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no site Laventy Studio, e outros sites que possuímos e operamos.</p>
+                    
+                    <h3 style="margin-top: 1.5rem; font-size: 1.1rem;">1. Informações que coletamos</h3>
+                    <p>Solicitamos informações pessoais apenas quando realmente precisamos delas para lhe fornecer um serviço. Fazemo-lo por meios justos e legais, com o seu conhecimento e consentimento.</p>
+                    <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
+                        <li><strong>Informações de Contato:</strong> Nome, e-mail e telefone via WhatsApp.</li>
+                        <li><strong>Dados de Navegação:</strong> Informações padrão para melhorar a experiência do usuário.</li>
+                    </ul>
+
+                    <h3 style="margin-top: 1.5rem; font-size: 1.1rem;">2. Uso das Informações</h3>
+                    <p>Usamos as informações para processar assinaturas, enviar atualizações de pedidos e responder a solicitações de suporte.</p>
+
+                    <h3 style="margin-top: 1.5rem; font-size: 1.1rem;">3. Retenção e Segurança</h3>
+                    <p>Retenmos os dados apenas pelo tempo necessário e protegemos contra acesso não autorizado.</p>
+
+                    <h3 style="margin-top: 1.5rem; font-size: 1.1rem;">4. Seus Direitos</h3>
+                    <p>Você pode recusar a nossa solicitação de informações, entendendo que talvez não possamos fornecer alguns serviços.</p>
+
+                    <p style="margin-top: 2rem; font-size: 0.85rem; color: #888; border-top: 1px solid #eee; pt-2">Esta política é efetiva a partir de Fevereiro de 2026.</p>
+                </div>
+                <button class="btn btn-secondary" onclick="closePrivacyModal(event)" style="width: 100%; margin-top: 2rem;">Fechar</button>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Product data
@@ -1207,6 +1262,17 @@
             `).join('');
         }
 
+        
+        function openPrivacyModal() {
+            document.getElementById('privacyModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePrivacyModal(event) {
+            document.getElementById('privacyModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
         function openProductModal(productId) {
             const product = productsData.find(p => p.id === productId);
             if (!product) return;
@@ -1221,7 +1287,7 @@
                     <h2>${product.name}</h2>
                     <div class="modal-price">${product.price}</div>
                     <div class="modal-description">${product.desc}</div>
-                    <a href="https://wa.me/351934975262?text=Olá! Tenho interesse no produto: ${product.name}" target="_blank" class="btn btn-primary" style="width: 100%;">Comprar via WhatsApp</a>
+                    <a href="https://wa.me/351934975262?text=Olá! Tenho interesse no produto: ${product.name}" target="_blank" class="btn btn-primary" style="width: 100%;">Comprar via WhatsApp</a>\n                    <button class="btn btn-secondary" onclick="closeModal(event)" style="width: 100%; margin-top: 1rem;">Fechar Janela</button>
                 </div>
             `;
 
