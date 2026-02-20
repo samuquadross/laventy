@@ -254,6 +254,11 @@
             gap: 2rem;
             margin: 3rem 0;
         }
+        .benefits-grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 350px));
+            justify-content: center;
+        }
+
 
         .product-card {
             background: #ffffff;
@@ -958,7 +963,7 @@
         <section class="container mt-4">
             <h2 class="text-center">Por Que Assinar?</h2>
             <p class="text-center" style="color: #888; margin-bottom: 3rem;">Benefícios exclusivos para membros do Clube Laventy</p>
-            <div class="products-grid">
+            <div class="products-grid benefits-grid">
                 <div class="product-card text-center" style="padding: 2rem; border: none; cursor: default;">
                     <div class="benefit-icon" style="margin: 0 auto 1rem;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M12 8v13"></path><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"></path></svg>
@@ -1140,17 +1145,21 @@
                         <li><a onclick="showPage('somos-luz')">Somos Luz</a></li>
                         <li><a onclick="showPage('produtos')">Produtos</a></li>
                         <li><a onclick="showPage('clube-laventy')">Clube Laventy</a></li>
-                        <li><a onclick="openPrivacyModal()">Política de Privacidade</a></li>
                     </ul>
                 </div>
                 
 
                 <div class="footer-section">
                     <h4>Siga-nos</h4>
-                    <a href="https://www.instagram.com/laventy.studio/" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; color: #aaa; text-decoration: none; transition: color 0.3s;">
+                    <a href="https://www.instagram.com/laventy.studio/" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; color: #aaa; text-decoration: none; transition: color 0.3s; margin-bottom: 1.5rem;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                         <span>Instagram</span>
                     </a>
+                    <h4 style="margin-top: 2rem;">Legal</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.75rem;"><a onclick="openPrivacyModal()" style="text-decoration: none; color: #aaa; transition: color 0.3s; cursor: pointer; font-size: 0.95rem;">Política de Privacidade</a></li>
+                        <li><a onclick="openRgpdModal()" style="text-decoration: none; color: #aaa; transition: color 0.3s; cursor: pointer; font-size: 0.95rem;">RGPD & LGPD</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -1188,6 +1197,42 @@
                     <p style="margin-top: 2rem; font-size: 0.85rem; color: #888; border-top: 1px solid #eee; pt-2">Esta política é efetiva a partir de Fevereiro de 2026.</p>
                 </div>
                 <button class="btn btn-secondary" onclick="closePrivacyModal(event)" style="width: 100%; margin-top: 2rem;">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- RGPD & LGPD Modal -->
+    <div id="rgpdModal" class="modal" onclick="closeRgpdModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-modal" onclick="closeRgpdModal(event)">&times;</span>
+            <div style="padding: 2.5rem;">
+                <h2 class="text-center" style="margin-bottom: 2rem;">RGPD & LGPD</h2>
+                <div style="color: #444; line-height: 1.6; max-height: 60vh; overflow-y: auto; padding-right: 10px;">
+                    <p>O <strong>Laventy Studio</strong> está comprometido com a segurança e proteção dos dados de todos os seus usuários e clientes, em conformidade com o <strong>Regulamento Geral sobre a Proteção de Dados (RGPD)</strong> da União Europeia e a <strong>Lei Geral de Proteção de Dados (LGPD)</strong> do Brasil.</p>
+                    
+                    <h3 style="margin-top: 1.5rem; font-size: 1.1rem;">1. Transparência no Tratamento de Dados</h3>
+                    <p>Coletamos apenas os dados estritamente necessários para a prestação de nossos serviços, como nome, e-mail e telefone para contato via WhatsApp e gestão de assinaturas do Clube Laventy.</p>
+
+                    <h3 style="margin-top: 1.5rem; font-size: 1.1rem;">2. Direitos do Titular</h3>
+                    <p>De acordo com o RGPD e a LGPD, você possui os seguintes direitos:</p>
+                    <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
+                        <li><strong>Acesso:</strong> Solicitar informações sobre como seus dados são tratados.</li>
+                        <li><strong>Retificação:</strong> Corrigir dados incompletos ou inexatos.</li>
+                        <li><strong>Eliminação:</strong> Solicitar a exclusão de seus dados pessoais de nossa base.</li>
+                        <li><strong>Portabilidade:</strong> Receber seus dados em formato estruturado.</li>
+                        <li><strong>Revogação de Consentimento:</strong> Retirar sua autorização para o tratamento de dados a qualquer momento.</li>
+                    </ul>
+
+                    <h3 style="margin-top: 1.5rem; font-size: 1.1rem;">3. Segurança da Informação</h3>
+                    <p>Implementamos medidas técnicas e organizacionais para proteger seus dados contra acessos não autorizados, perda, destruição ou alteração.</p>
+
+                    <h3 style="margin-top: 1.5rem; font-size: 1.1rem;">4. Transferência Internacional</h3>
+                    <p>Seus dados podem ser processados em servidores localizados fora do seu país de residência, sempre garantindo níveis de proteção adequados conforme exigido pelas legislações vigentes.</p>
+
+                    <p style="margin-top: 2rem; font-size: 0.85rem; color: #888; border-top: 1px solid #eee; pt-2">Última atualização: Fevereiro de 2026.</p>
+                </div>
+                <button class="btn btn-secondary" onclick="closeRgpdModal(event)" style="width: 100%; margin-top: 2rem;">Fechar</button>
             </div>
         </div>
     </div>
@@ -1263,6 +1308,17 @@
         }
 
         
+        
+        function openRgpdModal() {
+            document.getElementById('rgpdModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeRgpdModal(event) {
+            document.getElementById('rgpdModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
         function openPrivacyModal() {
             document.getElementById('privacyModal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
